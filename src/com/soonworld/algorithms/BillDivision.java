@@ -14,7 +14,20 @@ import static java.util.stream.Collectors.toList;
 public class BillDivision {
     // Complete the bonAppetit function below.
     static void bonAppetit(List<Integer> bill, int k, int b) {
+        // 브라이언과 안나의 저녁식사값에 대해 원래의 n빵한 가격과 브라이언이 계산한 가격이
+        // 맞는지 확인 및 다를 시 얼마를 안나에게 돌려줘야 하는지
+        int sum=0;
 
+        for(int i=0; i<bill.size(); i++){
+            if(bill.get(i)!=bill.get(k)){
+                sum+=bill.get(i);
+            }
+        }
+        if((sum/2)==b){
+            System.out.println("Bon Appetit");
+        }else{
+            System.out.println(b-(sum/2));
+        }
 
     }
 
