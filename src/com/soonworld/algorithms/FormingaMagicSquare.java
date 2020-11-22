@@ -8,131 +8,46 @@ import java.util.concurrent.*;
 import java.util.regex.*;
 
 
+/**
+ * tesecase 1~10번에 대해 다 에러가 나서 Discussion 참고 한 문제
+ * 이 문제를 해결 하기 위해선 3x3에서 나올 수 있는 모든 마방진(매직스퀘어)을 배열로 가지고 있고
+ * 그 배열들을 순회하면서 입력받은 값들의 차들 중 최소값을 뽑아 낼 수 밖에 없는 문제.
+ *  3x3 에서는 매직스퀘어가 8가지가 존재한다는 사실을 알고 있었더라면 조금은 쉽게 풀 수 있는 문제!
+ *  가장 상단 댓글을 다신 분의 내용을 보니 이 문제가 코딩테스트에 나온다면 3x3로 만들 수 있는 모든 마방진 리스트를 조회할 수 있도록 해주는게 맞을거 같다는 내용이 있다.
+ *  난 포인트 많이 얻고 싶으니까(골드 가고싶은 실버의 마음..) 어떻게든 풀어야되므로 discussion 참고하여 문제를 해결했다.
+ *  그냥 한마디로 논란의 문제임
+ */
+
 public class FormingaMagicSquare {
     // Complete the formingMagicSquare function below.
     static int formingMagicSquare(int[][] s) {
+        int [][][] magic_mat = { //8,3,3
+            {{8, 1, 6}, {3, 5, 7}, {4, 9, 2}},
+            {{6, 1, 8}, {7, 5, 3}, {2, 9, 4}},
+            {{4, 9, 2}, {3, 5, 7}, {8, 1, 6}},
+            {{2, 9, 4}, {7, 5, 3}, {6, 1, 8}},
+            {{8, 3, 4}, {1, 5, 9}, {6, 7, 2}},
+            {{4, 3, 8}, {9, 5, 1}, {2, 7, 6}},
+            {{6, 7, 2}, {1, 5, 9}, {8, 3, 4}},
+            {{2, 7, 6}, {9, 5, 1}, {4, 3, 8}},
+        };
 
-        int count = 0;
-        int resultCount = 0;
-        int[][] copy = new int[3][3];
-        int[][] result = new int[3][3];
+        int min=81; // 9x9 (사용자가 9 9개 입력하는게 최대값)
 
-        for(int i=0; i<3; i++){
+        for(int i=0; i<8; i++){
+            int count =0;
             for(int j=0; j<3; j++){
-                copy[i][j] = s [i][j];
-            }
-        }
-
-
-        if(column1(s)!=15) {
-            count = 15 - column1(s);
-            //case 1
-            s[0][0] += count;
-            if ((column1(s) == 15 && row1(s) == 15 && diagonal1(s) == 15)) {
-                result[0][0] = s[0][0];
-            } else {
-                s[0][0] -= count;
-                s[0][1] += count;
-                if ((column1(s) == 15 && row2(s) == 15)) {
-                    result[0][1] = s[0][1];
-                } else {
-                    s[0][1] -= count;
-                    s[0][2] += count;
-                    if ((column1(s) == 15 && row3(s) == 15)) {
-                        result[0][2] = s[0][2];
-                    } else {
-                        s[0][2] -= count;
-                    }
+                for(int k=0; k<3; k++){
+                    count += Math.abs(s[j][k]-magic_mat[i][j][k]);
                 }
             }
-        }
-
-        if(column2(s)!=15) {
-            count = 15 - column2(s);
-
-            //case 2
-            s[1][0] += count;
-            if ((column2(s) == 15 && row1(s) == 15) || (row2(s)==15 && row3(s)==15)) {
-                result[1][0] = s[1][0];
-            } else {
-                s[1][0] -= count;
-                s[1][1] += count;
-                if ((column2(s) == 15 && row2(s) == 15 && diagonal1(s) == 15 && diagonal2(s) == 15)) {
-                    result[1][1] = s[1][1];
-                } else {
-                    s[1][1] -= count;
-                    s[1][2] += count;
-                    if ((column2(s) == 15 && row3(s) == 15)) {
-                        result[1][2] = s[1][2];
-                    } else {
-                        s[1][2] -= count;
-                    }
-                }
+            if(min>count){
+                min=count;
             }
         }
 
-        if(column3(s)!=15) {
-            count = 15 - column3(s);
-            //case 3
-            s[2][0] += count;
-            if ((column3(s) == 15 && row1(s) == 15 && diagonal2(s) == 15)) {
-                result[2][0] = s[2][0];
-            } else {
-                s[2][0] -= count;
-                s[2][1] += count;
-                if ((column3(s) == 15 && row2(s) == 15)) {
-                    result[2][1] = s[2][1];
-                } else {
-                    s[2][1] -= count;
-                    s[2][2] += count;
-                    if ((column3(s) == 15 && row3(s) == 15 && diagonal1(s) == 15)) {
-                        result[2][2] = s[2][2];
-                    } else {
-                        s[0][2] -= count;
-                    }
-                }
-            }
-        }
-
-        for(int i=0; i<3; i++){
-            for(int j=0; j<3; j++){
-                System.out.print(s[i][j]);
-                if(result[i][j]!=0){
-                    resultCount += Math.abs(copy[i][j]-result[i][j]);
-                }
-            }
-            System.out.println();
-        }
-        System.out.println(resultCount);
-        return resultCount;
+        return min;
     }
-
-    static int column1(int[][] s){
-        return s[0][0]+s[0][1]+s[0][2];
-    }
-    static int column2(int[][] s){
-        return s[1][0]+s[1][1]+s[1][2];
-    }
-    static int column3(int[][] s){
-        return s[2][0]+s[2][1]+s[2][2];
-    }
-    static int row1(int[][] s){
-        return s[0][0]+s[1][0]+s[2][0];
-    }
-    static int row2(int[][] s){
-        return s[0][1]+s[1][1]+s[2][1];
-    }
-    static int row3(int[][] s){
-        return s[0][2]+s[1][2]+s[2][2];
-    }
-    static int diagonal1(int[][] s){
-        return s[0][0]+s[1][1]+s[2][2];
-    }
-    static int diagonal2(int[][] s){
-        return s[0][2]+s[1][1]+s[2][0];
-    }
-
-
     private static final Scanner scanner = new Scanner(System.in);
 
     public static void main(String[] args) throws IOException {
