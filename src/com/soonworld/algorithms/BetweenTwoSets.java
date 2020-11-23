@@ -46,6 +46,7 @@ public class BetweenTwoSets {
         return count;
     }
 
+    //유클리드 호제법
     public static int gcd(int a, int b){
         while(b!=0){
             int r = a%b;

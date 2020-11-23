@@ -49,6 +49,7 @@ public class ClimbingTheLeaderboard {
          * 하지만 인덱스는 0부터 시작하기때문에 저장할땐 +1을 더 해주어 i+2로 해준다.
          * 3. while문을 통과했을 때  i가 0보다 작아 통과한 경우는 1등을 한 경우가 된다. 인덱스0보다 큰거니까
          *  따라서  i가 0보다 작은 지 for문 끝나기 전 체크 필요
+         *  그 후 다음 score 가 while문에 들어갈땐 이전에 비교했던 인덱스값 다음을 비교하게 된다.
          */
         for(int score : player){
             while(i>=0){
