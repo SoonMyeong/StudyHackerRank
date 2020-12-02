@@ -22,6 +22,7 @@ public class QueensAttack2 {
     static int queensAttack(int n, int k, int r_q, int c_q, int[][] obstacles) {
         //범위가 크므로 for문 하나로 끝내야 한다.
         // queen의 좌표에 의한 각 영역의 합을 구해놓고 장애물위치를 하나씩 두면서 각 영역의 합을 다시 구한다 ;
+        //2차원 배열에서 대각선위치에 속하는 경우 abs(비교행-기준행) == abs(비교열-기준열)
 
         int topSpan = n-r_q; //한쪽이 n-값
         int botomSpan =r_q-1;
@@ -32,13 +33,38 @@ public class QueensAttack2 {
         int tlSpan =Math.min(n-r_q, Math.abs(1-c_q)); // top Left
         int trSpan =n - Math.max(c_q,r_q); // top Right
 
-        //다음에 다시 풀어보자..
+//
+//        for(int i=0; i<k; i++){
+//           if(obstacles[i][0] == r_q){ //같은 행
+//                if(obstacles[i][1] > c_q){
+//                    rightSpan = Math.min(rightSpan,obstacles[i][1]-c_q-1);
+//                }else if (obstacles[i][1] < c_q){
+//                    leftSpan = Math.min(leftSpan,c_q-obstacles[i][1]-1);
+//                }
+//           }else if(obstacles[i][1] == c_q){ //같은 열
+//               if(obstacles[i][0] > r_q){
+//                    topSpan = Math.min(topSpan, obstacles[i][0]-r_q-1);
+//               }else if(obstacles[i][1] <r_q){
+//                   botomSpan = Math.min(botomSpan, r_q-obstacles[i][0]-1);
+//               }
+//           }else if(Math.abs(obstacles[i][0]-r_q)==Math.abs(obstacles[i][1]-c_q)){ //같은 대각선
+//                if(obstacles[i][0] > r_q){
+//                    if(obstacles[i][1] > c_q){
+//                        trSpan = Math.min(trSpan , obstacles[i][1]-c_q-1);
+//                    }else if(obstacles[i][1] < c_q){
+//                        tlSpan = Math.max(tlSpan , obstacles[i][0]-r_q-1);
+//                    }
+//                }else if (obstacles[i][0] < r_q){
+//                    if(obstacles[i][1] > c_q){
+//                        brSpan = Math.min(brSpan , obstacles[i][1]-c_q-1);
+//                    }else if (obstacles[i][1] < c_q){
+//                        blSpan = Math.min(blSpan , c_q-obstacles[i][1]-1);
+//                    }
+//                }
+//           }
+//        }
 
-        for(int i=0; i<k; i++){
-
-        }
-
-        return 0;
+        return topSpan+botomSpan+rightSpan+leftSpan+blSpan+brSpan+tlSpan+trSpan;
 
     }
 
