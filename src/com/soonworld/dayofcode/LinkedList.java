@@ -11,7 +11,7 @@ class Node {
     }
 }
 
-public class LinkedList {
+public class LinkedList<C> {
     public static  Node insert(Node head,int data) {
         //Complete this method
         //Complete this method
