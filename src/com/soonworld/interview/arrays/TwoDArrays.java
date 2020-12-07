@@ -1,4 +1,4 @@
-package com.soonworld.dayofcode;
+package com.soonworld.interview.arrays;
 import java.io.*;
 import java.math.*;
 import java.security.*;
