@@ -25,7 +25,7 @@ public class MakingAnagrams {
             for(int j=0; j<bString.length; j++){
                 if(aString[i]==bString[j]){
                     count++;
-                    bString[j] = 0;
+                    bString[j] = '0';
                     break;
                 }
             }
