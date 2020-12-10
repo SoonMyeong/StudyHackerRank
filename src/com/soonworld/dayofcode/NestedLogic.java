@@ -43,6 +43,6 @@ public class NestedLogic {
                     break;
                 }
             }
-
+        scanner.close();
     }
 }
