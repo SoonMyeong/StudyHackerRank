@@ -7,7 +7,7 @@ import java.util.*;
 import java.util.concurrent.*;
 import java.util.regex.*;
 
-public class Arrays {
+public class Arrays1 {
     private static final Scanner scanner = new Scanner(System.in);
 
     public static void main(String[] args) {
