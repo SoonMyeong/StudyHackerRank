@@ -14,6 +14,14 @@ import java.util.regex.*;
  *  단, p<=q && q>=r 조건을 만족해야만 한다.
  *  문제 자체는 씸플하구만
  */
+
+/**
+ * Arrays.binaruSearch()
+ *  오름차순으로 정렬된 리스트에서만 사용 가능한 단점이 있지만, 속도가 빠르다는 장점이 있다.
+ * 배열에서 요소 검색 시 매우 적절, 단 리스트에 없는 숫자일 경우 음수를 붙여 리턴된다.
+ *
+ */
+
 public class TripleSum {
     // Complete the triplets function below.
     static long triplets(int[] a, int[] b, int[] c) {
