@@ -30,6 +30,7 @@ public class TripleSum {
         //1. 각 배열들을 오름차순 정렬 후 -->정렬 시 set을 사용해 중복을 없애야 한다. [★]
         //2. b를 중점으로 두고 그 안에서 a,c 배열 인덱스값이 b인덱스보다 작거나같은 경우만 +하여
         //3. b인덱스 하나를 늘리기 전 a와 c의 곱 (이건 예상했었음)을 더 해 간다.
+
         int [] ar = Arrays.stream(a).sorted().distinct().toArray();
         int [] br = Arrays.stream(b).sorted().distinct().toArray();
         int [] cr = Arrays.stream(c).sorted().distinct().toArray();
