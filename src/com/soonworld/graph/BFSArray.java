@@ -25,7 +25,8 @@ public class BFSArray {
         visited[v] = true;
 
         while(!queue.isEmpty()){
-            result.add(queue.poll());
+            v = queue.poll(); //queue에서 뺀 뒤 따로 저장, 아래에서 간선 체크 위해
+            result.add(v);
 
             for(int i=1; i<=arr.length-1; i++){
                 if(arr[v][i]==1 && !visited[i]){ //방문한적 없고 정점의 간선이 존재 하면(1)
