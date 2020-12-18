@@ -5,6 +5,8 @@ import java.util.*;
  *   DFS 구현 연습 (인접행렬)
  *  정점, 간선의 개수 및 탐색 시작 번호를 입력 받았을 때
  *  DFS 한 결과를 출력 하기 , 단 입력받는 간선들은 양방향이다.
+ *
+ *  재귀와 스택의 같은 점은 LIFO, 마지막에 들어간게 먼저 나온다.
  *  -------------------------------------------------
  *  [재귀]
  *  1. 시작 정점(1)과 인접한 정점 하나(2)를 방문 한다.
@@ -77,7 +79,7 @@ public class DFSArray {
             array[v2][v1] = 1;
         }
 
-       // dfsRecursion(v,array,visited);
-        dfsStack(v,array,visited,true);
+        dfsRecursion(v,array,visited);
+        //dfsStack(v,array,visited,true);
     }
 }
